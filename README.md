@@ -21,6 +21,17 @@ jsub 11 3
 ldb 17 3
 ldx 14 3
 
+Opcode file example:
+
+compr 201 2
+divf 4 3
+divr 202 2
+fix 5 1
+j 13 3
+jsub 11 3
+ldb 17 3
+ldx 14 3
+
 2. A program file which is a file that contains the assembly language. In this file, if a line starts with a tab character then the first token after the tab character (using space as a token delimiter) is the instruction to be carried out. If a line starts without a tab character, then the first token is a symbol being defined.
 
 Program file example:
