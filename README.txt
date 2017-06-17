@@ -1,6 +1,5 @@
 Two-pass assembler that converts assembly language to binary machine language
 
-
 How to execute in the command line: sicxe <opcode file name> <program file name> <hash table size>
 (ex. sicxe opcodefile.txt programfile.txt 8)
 
@@ -31,11 +30,8 @@ Program file example:
 
 	ldb val
 	fix
-
 	divr X T
-
 foo ldx blah
-
 label divf @blah
 blah compr B A
 var fix
