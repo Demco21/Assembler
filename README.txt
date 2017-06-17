@@ -40,3 +40,5 @@ bar ldx foo
 xyz fix
 
 The hash table size is entirely up to the user, it can be any number greater than zero.
+After execution, a file called mycode.obj will be created in the current working directory.
+This file will containt all the assembled binary code of each line in the program file.
