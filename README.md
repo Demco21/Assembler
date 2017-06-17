@@ -48,4 +48,10 @@ xyz fix
 
 The hash table size is entirely up to the user, it can be any number greater than zero.
 
+testing out this new thing
+if this is going to work.
+or ot.
+var fix
+blah compr B A
+
 
