@@ -1,16 +1,12 @@
-Two-pass assembler that converts assembly language to binary machine language
+Two-Pass Assembler
+How to execute in the command line: 
+<sicxe opcodeFile programFile hashSize>      (ex. sicxe opcodefile.txt programfile.txt 8) 
 
-How to execute in the command line: sicxe <opcode file name> <program file name> <hash table size>
-(ex. sicxe opcodefile.txt programfile.txt 8)
+This program accepts two files as input. The first is an opcode file, which is a file containing the opcode number and size in bytes, of all the instructions used in the program file. Each entry is formatted as follows: 
 
-This program accepts two files as input.
+<instruction opcode byte-size\n>       (ex. mul 201 2)
 
-1. An opcode file which is a file containing the opcode number of all the instructions used in the program file.
-This file is formatted as follows: instruction opcode byte-size 
-(ex. compr 201 2)
-Where instruction is the name of the instruction, opcode is the opcode of the instruction and byte-size is the size of the instruction
-in bytes. In this program we exclude 4-byte instructions. This program will only assemble 1, 2 and 3 byte instructions. Each instruction 
-in the ocpode file is separated by a newline character.
+Where instruction is a string containing the name of the instruction, opcode is an integer containing the opcode of the instruction and byte-size is an integer containing the size of the instruction in bytes. In this program we exclude 4-byte instructions. This program will only assemble 1, 2 and 3 byte instructions. Each instruction in the ocpode file is separated by a newline character. Each instruction from the opcode file is stored in a binary tree.
 
 Opcode file example:
 compr 201 2
@@ -22,12 +18,9 @@ jsub 11 3
 ldb 17 3
 ldx 14 3
 
-2. A program file which is a file that contains the assembly language. In this file, if a line starts with a tab character then the 
-first token after the tab character (using space as a token delimiter) is the instruction to be carried out. If a line starts without a 
-tab character, then the first token is a symbol being defined.
+The second file is a program file which is a file that contains the assembly language. In this file, if a line starts with a tab character then the first token after the tab character (using space as a token delimiter) is the instruction to be carried out. If a line starts without a tab character, then the first token is a symbol being defined. Each symbol from the program is stored in a hash table that allows chaining.
 
 Program file example:
-
 	ldb val
 	fix
 	divr X T
@@ -39,6 +32,16 @@ val ldb #10
 bar ldx foo
 xyz fix
 
-The hash table size is entirely up to the user, it can be any number greater than zero.
-After execution, a file called mycode.obj will be created in the current working directory.
-This file will containt all the assembled binary code of each line in the program file.
+The hash table size is entirely up to the user, it can be any number greater than zero. After execution, the program will parse through the program file twice. The first time, it will create the symbol table (using a hash table). The first token of all instructions that don't start with a tab character is stored in the symbol table. The second time parsing, the program will assemble each line of instructions as a binary string. a file called mycode.obj will be created in the current working directory. This file will contain all the assembled binary code of each line in the program file.
+
+Assembling Instructions
+1 Byte Instruction ex: fix
+1 Byte Assembling: 8BitOpcode
+
+2 Byte Instruction ex: div X T
+2 Byte Assembling: 8BitOpcode+4BitRegister1+4BitRegister2
+
+3 Byte Instruction ex: fix val
+3 Byte Assembling: 6BitOpcode+nixbpeBits+12BitLC
+
+
