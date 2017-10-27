@@ -49,6 +49,14 @@ don't start with a tab character is stored in the symbol table. The second time 
 instructions as a binary string. a file called mycode.obj will be created in the current working directory. This file will contain all
 the assembled binary code of each line in the program file.
 
+This program will also take into account the '@' character which can be used in 3 byte instructions to signal indirect addressing
+and the '#' character which can be used in 3 byte instructions to signal an immediate number.
+
+In addition, this program will also assemble instructions that define a symbol using 'word', 'resw', 'resb'
+'word x' reserves one 24 bit word with value x. 
+'resw x' reserves x 24 bit words.
+'resb x' reserves x bytes.
+
 Assembling Format:
 1 Byte Instruction ex: fix
 1 Byte Assembling: 8BitOpcode
@@ -59,4 +67,8 @@ Assembling Format:
 3 Byte Instruction ex: fix val
 3 Byte Assembling: 6BitOpcode nixbpeBits 12BitDisplacment
 
+'word 12' assembled: 000000000000000000001100
 
+'resw 2' assembled: 000000000000000000000000000000000000000000000000
+
+'resb 3' assembled: 000000000000000000000000
