@@ -3,7 +3,7 @@ How to execute in the command line:
 <sicxe opcodeFile programFile hashSize>      (ex. sicxe opcodefile.txt programfile.txt 8) 
 
 This program accepts two files as input. The first is an opcode file, which is a file containing the opcode number 
-and size in bytes, of all the instructions used in the program file. Each entry is formatted as follows: 
+and size in bytes, of all non user-defined symbols used in the program file. Each entry is formatted as follows: 
 
 <instruction opcode byte-size\n>       (ex. mul 201 2)
 
