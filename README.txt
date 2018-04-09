@@ -31,7 +31,9 @@ ldx 14 3
 The second file is a program file which is a file that contains the assembly language. In this file, if a line starts with a tab
 character then the first token after the tab character (using space as a token delimiter) is the instruction to be carried out.
 If a line starts without a tab character, then the first token is a symbol being defined. Each defined symbol from the program
-is stored in a hash table that allows chaining.
+is stored in a hash table along with the opcode of the instruction directly after the symbol. For example, the first symbol defined
+in the following example is foo. So the key "foo" will be hashed into the table along with the value 14 which represents the opcode
+value of ldx.
 
 Program file example:
 
